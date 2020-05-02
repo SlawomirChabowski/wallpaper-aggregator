@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/wallpapper-aggregator/static/css/main.54a5d39e.chunk.css",
+    "main.js": "/wallpapper-aggregator/static/js/main.0f42751e.chunk.js",
+    "main.js.map": "/wallpapper-aggregator/static/js/main.0f42751e.chunk.js.map",
+    "runtime-main.js": "/wallpapper-aggregator/static/js/runtime-main.993d03c0.js",
+    "runtime-main.js.map": "/wallpapper-aggregator/static/js/runtime-main.993d03c0.js.map",
+    "static/css/2.2ffde8b7.chunk.css": "/wallpapper-aggregator/static/css/2.2ffde8b7.chunk.css",
+    "static/js/2.bc256e32.chunk.js": "/wallpapper-aggregator/static/js/2.bc256e32.chunk.js",
+    "static/js/2.bc256e32.chunk.js.map": "/wallpapper-aggregator/static/js/2.bc256e32.chunk.js.map",
+    "index.html": "/wallpapper-aggregator/index.html",
+    "precache-manifest.eb4d758c78e5bf13bb32ce7ecb3423a6.js": "/wallpapper-aggregator/precache-manifest.eb4d758c78e5bf13bb32ce7ecb3423a6.js",
+    "service-worker.js": "/wallpapper-aggregator/service-worker.js",
+    "static/css/2.2ffde8b7.chunk.css.map": "/wallpapper-aggregator/static/css/2.2ffde8b7.chunk.css.map",
+    "static/css/main.54a5d39e.chunk.css.map": "/wallpapper-aggregator/static/css/main.54a5d39e.chunk.css.map",
+    "static/js/2.bc256e32.chunk.js.LICENSE.txt": "/wallpapper-aggregator/static/js/2.bc256e32.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.993d03c0.js",
+    "static/css/2.2ffde8b7.chunk.css",
+    "static/js/2.bc256e32.chunk.js",
+    "static/css/main.54a5d39e.chunk.css",
+    "static/js/main.0f42751e.chunk.js"
+  ]
+}
