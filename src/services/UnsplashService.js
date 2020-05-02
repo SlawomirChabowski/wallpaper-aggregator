@@ -13,8 +13,11 @@ class UnsplashService {
   }
 
   getImages(page = 1) {
-    return axios.get(setupUrl(`${this.apiUrl}/${this.endpoints.getImages}`, null, page))
-      .then(res => res.data.map(i => this.mapData(i)));
+    return axios.get(setupUrl(`${this.apiUrl}/${this.endpoints.getImages}`, {
+      per_page: 100,
+      order_by: 'popular',
+      page,
+    })).then(res => res.data.map(i => this.mapData(i)));
   }
 
   mapData(image) {

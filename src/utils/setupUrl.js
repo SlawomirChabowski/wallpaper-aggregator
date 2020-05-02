@@ -1,14 +1,8 @@
-function setupUrl(urlStr, params, page) {
+function setupUrl(urlStr, params) {
   const url = new URL(urlStr);
 
   if (params) {
-    Object.values(params).forEach((p) => { url.searchParams.append(...p); });
-  }
-
-  if (page) {
-    url.searchParams.append('page', page);
-    url.searchParams.append('per_page', 100);
-    url.searchParams.append('order_by', 'popular');
+    Object.entries(params).forEach((p) => { url.searchParams.append(...p); });
   }
 
   return url.toString();
