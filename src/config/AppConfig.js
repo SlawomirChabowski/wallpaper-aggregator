@@ -1,7 +1,7 @@
 export const AppConfig = {
   sources: {
     pixabay: {
-      apiUrl: 'https://pixabay.com/api',
+      apiUrl: 'https://pixabay.com/api/',
       apiKey: '16344050-36e14aaccf5abf36dcc90d8ec',
     },
     unsplash: {
