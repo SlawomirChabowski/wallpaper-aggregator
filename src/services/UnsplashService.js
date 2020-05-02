@@ -20,7 +20,7 @@ class UnsplashService {
 
   getImages(page = 1) {
     return axios.get(setupUrl(`${this.apiUrl}/${this.endpoints.getImages}`, {
-      per_page: 100,
+      per_page: 50,
       order_by: 'popular',
       page,
     })).then(res => res.data.map(i => this.mapData(i)));
@@ -28,25 +28,24 @@ class UnsplashService {
 
   mapData(image) {
     const source = Source.unsplash;
-    const { id, created_at, width, height, downloads, description, tags } = image;
-    const { name, link: userLink } = image.user;
-    const link = image.links.html;
-    const url = image.urls.raw;
+    const { id, width, height, downloads, description, tags } = image;
+    const { name, link } = image.user;
+    const siteUrl = image.links.html;
+    const imageUrl = image.urls.raw;
 
     return {
       id,
       source,
-      createdAt: new Date(created_at),
       width,
       height,
       downloads,
       description,
       tags,
-      link,
-      url,
+      siteUrl,
+      imageUrl,
       user: {
         name,
-        link: userLink,
+        link,
       },
     };
   }
