@@ -3,6 +3,12 @@ import Source from '../utils/enums/Source';
 import setupUrl from '../utils/setupUrl';
 import axios from 'axios';
 
+axios.interceptors.request.use((config) => {
+  config.headers.authorization = `Client-ID ${AppConfig.sources.unsplash.apiKey}`;
+
+  return config;
+});
+
 class UnsplashService {
   constructor() {
     axios.interceptors.request.use(this.setupInterceptor);
@@ -43,12 +49,6 @@ class UnsplashService {
         link: userLink,
       },
     };
-  }
-
-  setupInterceptor(config) {
-    config.headers.authorization = `Client-ID ${AppConfig.sources.unsplash.apiKey}`;
-
-    return config;
   }
 }
 
