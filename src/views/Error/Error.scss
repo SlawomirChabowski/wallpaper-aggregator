@@ -10,3 +10,19 @@
     margin-right: 0;
   }
 }
+
+.error-card {
+  width: 100%;
+  max-width: 750px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error-card-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  object-position: 0 60%;
+}
