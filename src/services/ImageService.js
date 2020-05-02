@@ -1,4 +1,5 @@
 import UnsplashService from './UnsplashService';
+import PixabayService from './PixabayService';
 
 /**
  * @typedef {object} AbstractImageService
@@ -10,16 +11,15 @@ class ImageService {
     /**
      * @var {AbstractImageService[]} services
      */
-    this.services = [new UnsplashService()];
+    this.services = [
+      new UnsplashService(),
+      new PixabayService(),
+    ];
   }
 
   async getImages(page = 1) {
     return Promise.all(this.services.map(s => s.getImages(page)))
-      .then(data => this.sortImagesByDate(data.flat()));
-  }
-
-  sortImagesByDate(images) {
-    return images.sort((i1, i2) => i1.createdAt < i2.createdAt);
+      .then(data => data.flat());
   }
 }
 
