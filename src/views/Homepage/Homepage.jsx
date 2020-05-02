@@ -1,7 +1,8 @@
 import React from 'react';
+import ViewContainer from '../../components/ViewContainer/ViewContainer';
 
 function Homepage() {
-  return <div>Hello world</div>;
+  return <ViewContainer>Hello world</ViewContainer>;
 }
 
 export default Homepage;
