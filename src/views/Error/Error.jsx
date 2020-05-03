@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Error() {
   return <Container fluid>
-    <Card className="error-card">
+    <Card className="error-card position-absolute">
       <CardImg className="error-card-img" top src="assets/img/raychan-PY3d9NScUP4-unsplash.jpg" alt="Sad cat" />
 
       <CardBody>
