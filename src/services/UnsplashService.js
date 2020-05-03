@@ -2,6 +2,8 @@ import { AppConfig } from '../config/AppConfig';
 import Source from '../utils/enums/Source';
 import setupUrl from '../utils/setupUrl';
 import axios from 'axios';
+import Image from '../models/Image';
+import User from '../models/User';
 
 axios.interceptors.request.use((config) => {
   config.headers.authorization = `Client-ID ${AppConfig.sources.unsplash.apiKey}`;
@@ -11,13 +13,15 @@ axios.interceptors.request.use((config) => {
 
 class UnsplashService {
   constructor() {
-    axios.interceptors.request.use(this.setupInterceptor);
-
     this.apiUrl = AppConfig.sources.unsplash.apiUrl;
     this.apiKey = AppConfig.sources.unsplash.apiKey;
     this.endpoints = { getImages: 'photos' };
   }
 
+  /**
+   * @param {number} page
+   * @returns {Promise<Image[]>}
+   */
   getImages(page = 1) {
     return axios.get(setupUrl(`${this.apiUrl}/${this.endpoints.getImages}`, {
       per_page: 50,
@@ -26,28 +30,31 @@ class UnsplashService {
     })).then(res => res.data.map(i => this.mapData(i)));
   }
 
-  mapData(image) {
-    const source = Source.unsplash;
-    const { id, width, height, downloads, description, tags } = image;
-    const { name, link } = image.user;
-    const siteUrl = image.links.html;
-    const imageUrl = image.urls.raw;
+  /**
+   * @param {object} responseImg
+   * @returns {Image[]}
+   */
+  mapData(responseImg) {
+    const { id, width, height, downloads, tags } = responseImg;
+    const { user_id, name, link } = responseImg.user;
+    const siteUrl = responseImg.links.html;
+    const imageUrl = responseImg.urls.raw;
 
-    return {
+    return new Image({
+      source: Source.unsplash,
       id,
-      source,
       width,
       height,
       downloads,
-      description,
       tags,
       siteUrl,
       imageUrl,
-      user: {
+      user: new User({
+        id: user_id,
+        profileLink: link,
         name,
-        link,
-      },
-    };
+      }),
+    });
   }
 }
 

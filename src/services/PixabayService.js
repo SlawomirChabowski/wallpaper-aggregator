@@ -1,22 +1,22 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { AppConfig } from '../config/AppConfig';
 import setupUrl from '../utils/setupUrl';
 import Source from '../utils/enums/Source';
+import Image from '../models/Image';
+import User from '../models/User';
 
-axios.interceptors.request.use((config) => {
-  config.url = setupUrl(config.url, { key: AppConfig.sources.pixabay.apiKey });
-  config.headers = {
-    ...config.headers,
-    'Access-Control-Allow-Origin': '*',
-  };
+// axios.interceptors.request.use((config) => {
+//   config.url = setupUrl(config.url, { key: AppConfig.sources.pixabay.apiKey });
+//   config.headers = {
+//     ...config.headers,
+//     'Access-Control-Allow-Origin': '*',
+//   };
 
-  return config;
-});
+//   return config;
+// });
 
 class PixabayService {
   constructor() {
-    axios.interceptors.request.use(this.setupInterceptor);
-
     this.apiUrl = AppConfig.sources.pixabay.apiUrl;
   }
 
@@ -25,14 +25,21 @@ class PixabayService {
   //     .then(res => res.data.hits.map(i => this.mapData(i)));
   // }
 
+  /**
+   * @param {number} page 
+   * @returns {Promise<Image[]>}
+   */
   getImages(page = 1) {
     return fetch(setupUrl(this.apiUrl, { per_page: 50, order: 'popular', page, key: AppConfig.sources.pixabay.apiKey }))
       .then(res => res.json())
       .then(data => data.hits.map(i => this.mapData(i)));
   }
 
-  mapData(image) {
-    const source = Source.pixabay;
+  /**
+   * @param {object} responseImg
+   * @returns {Image[]}
+   */
+  mapData(responseImg) {
     const {
       id,
       downloads,
@@ -43,22 +50,23 @@ class PixabayService {
       user: userName,
       pageURL: siteUrl,
       largeImageURL: imageUrl,
-    } = image;
+    } = responseImg;
 
-    return {
+    return new Image({
+      source: Source.pixabay,
       id,
-      source,
       width,
       height,
       downloads,
       tags,
       siteUrl,
       imageUrl,
-      user: {
+      user: new User({
+        id: user_id,
         name: userName,
-        link: `https://pixabay.com/users/${userName}-${user_id}`,
-      },
-    };
+        profileLink: `https://pixabay.com/users/${userName}-${user_id}`,
+      }),
+    });
   }
 }
 
