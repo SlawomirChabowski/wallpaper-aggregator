@@ -1,0 +1,9 @@
+.thumbnail {
+  transition: transform 0.3s ease;
+
+  &:hover,
+  &:active,
+  &:focus {
+    transform: scale(1.2);
+  }
+}
