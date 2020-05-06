@@ -1,16 +1,16 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Error from '../views/Error/Error';
 import Homepage from '../views/Homepage/Homepage';
-import React from 'react';
 
-function Router() {
-  return <BrowserRouter>
+function AppRouter() {
+  return <HashRouter>
     <Switch>
       <Route exact path="/" component={Homepage} />
 
-      <Route path="**" component={Error} />
+      <Route component={Error} />
     </Switch>
-  </BrowserRouter>
-};
+  </HashRouter>;
+}
 
-export default Router;
+export default AppRouter;
